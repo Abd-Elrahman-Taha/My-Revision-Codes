@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: black;
+    color: white;
+}
+img,.img{
+    border-radius: 20px;
+}
+
+.btn1 , .btn2 , .btn3 {
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    background-color: rgba(0, 89, 255, 0.795);
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+    
+}
+
+.btn1:hover , .btn2:hover , .btn3:hover {
+    transform: scale(1.1);
+    box-shadow:  0 0 10px rgb(255, 255, 255);
+}
+.btn1:hover{
+    background-color: rgb(4, 196, 20);
+    color: black;
+}
+.btn2:hover{
+    background-color:gold;
+    color: black;
+}
+.btn3:hover{
+    background-color: crimson;
+    color: black;
+}
+
+.product-card {
+    position: relative;
+
+    transform:
+        perspective(1200px)
+        rotateX(var(--rotate-x, 0deg))
+        rotateY(var(--rotate-y, 0deg))
+        translateZ(var(--translate-z, 0px));
+
+    transition: transform 0.12s ease-out, box-shadow 0.3s ease;
+    will-change: transform;
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+}
+.product-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(120, 180, 255, 0.25),
+        rgba(60, 130, 230, 0.10) 40%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.product-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.06),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+    filter: brightness(1.3) contrast(1.1);
+    
+}
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+.product-card:hover::after {
+    opacity: 1;
+}
