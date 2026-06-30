@@ -1,10 +1,25 @@
 import { Link } from "react-router-dom";
 import { FaShoppingCart, FaSearch, FaUserCircle } from "react-icons/fa";
-import { useAppSelector } from "../hooks/hooks";
+import { useAppSelector , useAppDispatch} from "../hooks/hooks";
+import { setSearchTerm } from "../features/products/searchSlice";
+import {setSortBy} from '../features/products/sortSlice';
 
 const Navbar = () => {
   const items = useAppSelector((state) => state.cart.items);
-
+  const dispatch = useAppDispatch();
+  
+  const searchTerm = useAppSelector((state) => state.search.searchTerm);
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchTerm(event.target.value));
+  }
+  
+  const sortBy = useAppSelector((state) => state.sort.sortBy);
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(setSortBy(event.target.value));
+  }
+  
+  
+  
   const totalItems = items.reduce(
     (total, item) => total + item.quantity,
     0
@@ -28,9 +43,24 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search products..."
+            value={searchTerm}
+            onChange={handleSearchChange}
             className="w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500 focus:bg-white"
           />
         </div>
+        <select
+  name="sort"
+  aria-label="Sort products"
+  value={sortBy}
+  onChange={(e) => dispatch(setSortBy(e.target.value))}
+  className="rounded-lg border border-slate-300 p-2"
+>
+    <option value="default">Default</option>
+  <option value="price-asc">Price: Low to High</option>
+  <option value="price-desc">Price: High to Low</option>
+  <option value="rating-asc">Rating: Low to High</option>
+  <option value="rating-desc">Rating: High to Low</option>
+</select>
 
         {/* Right Side */}
         <div className="flex items-center gap-5">
