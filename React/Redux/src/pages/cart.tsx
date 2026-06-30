@@ -6,13 +6,23 @@ import {
 } from "../features/products/cartSlice";
 import { Trash2 } from "lucide-react";
 import { removeFromCart } from "../features/products/cartSlice";
+import {useEffect} from 'react'
 const Cart = () => {
   const items = useAppSelector((state) => state.cart.items);
+  const user = useAppSelector((state) => state.auth.user);
     const dispatch = useAppDispatch();
   const total = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+  useEffect(() => {
+    if (user) {
+        localStorage.setItem(
+            `cart-${user.id}`,
+            JSON.stringify(items)
+        );
+    }
+}, [items, user]);
 
   return (
     <main className="min-h-screen bg-slate-100 py-10">

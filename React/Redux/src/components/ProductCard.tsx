@@ -4,6 +4,8 @@ import {openEditProduct } from "../features/products/editproductSlice";
 import {deleteProduct} from "../features/products/productSlice";
 import { useAppDispatch , useAppSelector } from "../hooks/hooks";
 import EditModel from "./EditModel";
+import {useNavigate} from 'react-router-dom'
+import { FaCartPlus, FaEdit, FaTrash, FaStar} from "react-icons/fa";
 interface Props {
   product: Product;
 }
@@ -11,43 +13,65 @@ interface Props {
 const ProductCard = ({ product }: Props) => {
     const dispatch = useAppDispatch();
     const {isOpen} = useAppSelector((state) => state.editProduct);
-  return (
+    const user = useAppSelector((state) => state.auth.user);
+    const navigate = useNavigate();
+    const handleAddToCart = () => {
+        if(!user){
+            alert("Please login to add to cart");
+            navigate("/login");
+            return;
+        }
+        dispatch(addTocart(product));
+    }
+    return (
   <>
-    <div className="group overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+    <div className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
 
       {/* Image */}
-      <div className="relative overflow-hidden">
+      <div className="relative h-64 overflow-hidden bg-slate-100">
         <img
           src={product.thumbnail}
           alt={product.title}
-          className="h-72 w-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-        <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700 backdrop-blur">
+        <span className="absolute left-4 top-4 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white shadow">
           {product.category}
-        </span>
-
-        <span className="absolute right-4 top-4 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-white shadow">
-          ⭐ {product.rating}
         </span>
       </div>
 
-      {/* Content */}
+      {/* Body */}
       <div className="space-y-5 p-6">
 
+        {/* Title */}
         <div>
-          <h2 className="line-clamp-1 text-2xl font-bold text-slate-900">
+          <h2 className="line-clamp-1 text-xl font-bold text-slate-900">
             {product.title}
           </h2>
 
-          <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-500">
+          <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-500">
             {product.description}
           </p>
         </div>
 
-        <div className="flex items-center justify-between rounded-2xl bg-slate-100 p-4">
+        {/* Rating & Stock */}
+        <div className="flex items-center justify-between">
+
+          <div className="flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-600">
+            <FaStar />
+            {product.rating}
+          </div>
+
+          <div className="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-600">
+            
+            {product.stock} in stock
+          </div>
+
+        </div>
+
+        {/* Price */}
+        <div className="flex items-end justify-between border-t border-slate-200 pt-4">
+
           <div>
             <p className="text-xs uppercase tracking-wider text-slate-500">
               Price
@@ -58,39 +82,38 @@ const ProductCard = ({ product }: Props) => {
             </h3>
           </div>
 
-          <div className="rounded-xl bg-white px-4 py-2 shadow">
-            <p className="text-xs text-slate-500">Stock</p>
-            <p className="font-bold text-slate-800">
-              {product.stock}
-            </p>
-          </div>
         </div>
 
         {/* Buttons */}
         <div className="grid grid-cols-3 gap-3">
 
           <button
-            onClick={() => dispatch(addTocart(product))}
-            className="rounded-xl bg-blue-600 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:shadow-lg active:scale-95"
+          aria-label="Add to cart"
+            onClick={handleAddToCart}
+            className="flex items-center justify-center rounded-xl bg-blue-600 py-3 text-white transition hover:bg-blue-700"
           >
-            🛒
+            <FaCartPlus size={18} />
           </button>
 
           <button
+          aria-label="Edit"
             onClick={() => dispatch(openEditProduct(product))}
-            className="rounded-xl bg-emerald-600 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-700 hover:shadow-lg active:scale-95"
+            className="flex items-center justify-center rounded-xl border border-emerald-600 text-emerald-600 transition hover:bg-emerald-600 hover:text-white"
           >
-            ✏️
+            <FaEdit size={18} />
           </button>
 
           <button
+            type="button"
+            aria-label="Delete"
             onClick={() => dispatch(deleteProduct(product.id))}
-            className="rounded-xl bg-rose-600 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-rose-700 hover:shadow-lg active:scale-95"
+            className="flex items-center justify-center rounded-xl border border-red-500 text-red-500 transition hover:bg-red-500 hover:text-white"
           >
-            🗑️
+            <FaTrash size={18} />
           </button>
 
         </div>
+
       </div>
     </div>
 

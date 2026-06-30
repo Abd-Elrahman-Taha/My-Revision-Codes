@@ -1,29 +1,30 @@
 import { Link } from "react-router-dom";
 import { FaShoppingCart, FaSearch, FaUserCircle } from "react-icons/fa";
+import { HiHome ,HiArrowRightOnRectangle  } from "react-icons/hi2";
 import { useAppSelector , useAppDispatch} from "../hooks/hooks";
 import { setSearchTerm } from "../features/products/searchSlice";
 import {setSortBy} from '../features/products/sortSlice';
+import {logout} from '../features/products/auth/authSlice';
+import { clearCart } from "../features/products/cartSlice";
 
 const Navbar = () => {
   const items = useAppSelector((state) => state.cart.items);
   const dispatch = useAppDispatch();
-  
+  const {user} = useAppSelector((state) => state.auth);
   const searchTerm = useAppSelector((state) => state.search.searchTerm);
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchTerm(event.target.value));
   }
-  
   const sortBy = useAppSelector((state) => state.sort.sortBy);
-  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setSortBy(event.target.value));
-  }
-  
-  
-  
   const totalItems = items.reduce(
     (total, item) => total + item.quantity,
     0
   );
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(clearCart());
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-lg">
@@ -63,35 +64,48 @@ const Navbar = () => {
 </select>
 
         {/* Right Side */}
-        <div className="flex items-center gap-5">
-          <Link
-            to="/"
-            className="font-medium text-slate-700 transition hover:text-blue-600"
-          >
-            Home
-          </Link>
+       <div className="flex items-center gap-3">
+  {/* Home */}
+  <Link
+    to="/"
+    className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-blue-600"
+  >
+    <HiHome size={22} />
+  </Link>
 
-          <Link
-            to="/cart"
-            className="relative rounded-xl bg-slate-900 p-3 text-white transition hover:bg-blue-600"
-          >
-            <FaShoppingCart size={20} />
+  {/* Cart */}
+  <Link
+    to="/cart"
+    className="relative rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-blue-600"
+  >
+    <FaShoppingCart size={22} />
 
-            {totalItems > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
-                {totalItems}
-              </span>
-            )}
-          </Link>
+    {totalItems > 0 && (
+      <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+        {totalItems}
+      </span>
+    )}
+  </Link>
 
-          <button
-            type="button"
-            aria-label="User profile"
-            className="text-slate-700 transition hover:text-blue-600"
-          >
-            <FaUserCircle size={34} />
-          </button>
-        </div>
+  {/* Login / Logout */}
+  {user ? (
+    <button
+      type="button"
+      aria-label="Logout"
+      onClick={handleLogout}
+      className="rounded-xl p-3 text-slate-700 transition hover:bg-red-100 hover:text-red-600"
+    >
+      <HiArrowRightOnRectangle size={22} />
+    </button>
+  ) : (
+    <Link
+      to="/login"
+      className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-blue-600"
+    >
+      <FaUserCircle size={22} />
+    </Link>
+  )}
+</div>
       </div>
     </header>
   );
