@@ -7,6 +7,7 @@ import EditModel from "./EditModel";
 import {useNavigate} from 'react-router-dom'
 import { FaCartPlus, FaEdit, FaTrash, FaStar} from "react-icons/fa";
 import { useRef } from "react";
+import { toast } from "react-hot-toast";
 interface Props {
   product: Product;
 }
@@ -62,11 +63,38 @@ const handleMouseLeave = () => {
 
     const handleAddToCart = () => {
         if(!user){
-            alert("Please login to add to cart");
+            toast.error("You need to login first!", {
+  style: {
+    border: "1px solid #9b0404",
+    borderLeft: "4px solid #9b0404",
+    padding: "16px",
+    color: "#7A1C1C",
+    background: "#FFF5F5",
+    
+  },
+  iconTheme: {
+    primary: "#9b0404",
+    secondary: "#FFF5F5",
+  },
+  position: "bottom-right",
+});
             navigate("/login");
             return;
         }
         dispatch(addTocart(product));
+        toast.success("Product added to cart!" ,{
+  style: {
+    border: "1px solid #4CAF50",
+    borderLeft: "4px solid #4CAF50",
+    padding: "16px",
+    color: "#155724",
+    background: "#D4EDDA",
+  },
+  iconTheme: {
+    primary: "#4CAF50",
+    secondary: "#D4EDDA",
+  },position: "bottom-right",
+        });
     }
     return (
   <>

@@ -3,27 +3,50 @@ import {loginUser} from "../features/products/auth/authThunk.ts";
 import {useNavigate , Link} from "react-router-dom";
 import { useState , useEffect } from "react";
 import {loadCart} from "../features/products/cartSlice.ts";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
     const dispatch = useAppDispatch();
     const {user, loading, error} = useAppSelector((state) => state.auth);
     const navigate = useNavigate();
     const [formData , setFormData] = useState({username:"" , password:""})
-    useEffect(() => {
-    if (user) {
-        const savedCart = localStorage.getItem(
-            `cart-${user.id}`
-        );
+   useEffect(() => {
+  if (!user) return;
 
-        dispatch(
-            loadCart(
-                savedCart ? JSON.parse(savedCart) : []
-            )
-        );
+  const savedCart = localStorage.getItem(`cart-${user.id}`);
 
-        navigate("/");
-    }
-}, [user]);
+  dispatch(loadCart(savedCart ? JSON.parse(savedCart) : []));
+
+  toast.success("Login successful!", {
+    style: {
+      border: "1px solid #4CAF50",
+      borderLeft: "4px solid #4CAF50",
+      padding: "16px",
+      color: "#155724",
+      background: "#D4EDDA",
+    },
+    iconTheme: {
+      primary: "#4CAF50",
+      secondary: "#D4EDDA",
+    },
+    position: "bottom-right",
+  });
+
+  if (user.role === "admin") {
+    toast.success("Welcome Admin 👑", {
+      position: "top-center",
+      style: {
+        border: "1px solid #4CAF50",
+        borderLeft: "4px solid #4CAF50",
+        padding: "16px",
+        color: "#155724",
+        background: "#D4EDDA",
+      },
+    });
+  }
+
+  navigate("/");
+}, [user, dispatch, navigate]);
     
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement>
@@ -37,7 +60,11 @@ const Login = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(loginUser(formData));
-    }
+      
+            
+    };
+
+     
 
     console.log("user", user?.role);
 
@@ -147,4 +174,4 @@ return(
     </>
 )
 };
-export default Login
+export default Login 

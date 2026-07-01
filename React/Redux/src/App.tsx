@@ -10,6 +10,7 @@ import Home from "./pages/home.tsx";
 import { useAppDispatch, useAppSelector } from './hooks/hooks.ts';
 import { useEffect } from 'react';
 import { loadCart } from './features/products/cartSlice.ts';
+import { Toaster } from "react-hot-toast";
 import './App.css'
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
 
   return (
     <>
+     <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
     <Navbar />
    
     <Routes>

@@ -6,9 +6,9 @@ import {
 } from "../features/products/cartSlice";
 import { Trash2 } from "lucide-react";
 import { removeFromCart } from "../features/products/cartSlice";
+
 const Cart = () => {
   const items = useAppSelector((state) => state.cart.items);
-  const user = useAppSelector((state) => state.auth.user);
     const dispatch = useAppDispatch();
   const total = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
