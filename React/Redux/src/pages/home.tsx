@@ -15,7 +15,7 @@ const Home = () => {
       <section className="mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-between gap-12 px-6 py-20 lg:flex-row">
 
         <div className="max-w-2xl">
-          <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-[#8A735A]">
+          <span className="rounded-full bg-[#72470a] px-4 py-2 text-sm font-semibold text-white">
             Welcome to ShopX
           </span>
 
@@ -35,7 +35,7 @@ const Home = () => {
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               to="/shop"
-              className="flex items-center gap-2 rounded-xl bg-[#D4C4AD] px-8 py-4 font-semibold text-white transition hover:bg-[#BDA88B]"
+              className="shop-now flex items-center gap-2 rounded-xl bg-[#72470a] px-8 py-4 font-semibold text-white transition hover:bg-[#BDA88B]"
             >
               Shop Now
               <FaArrowRight />
@@ -43,7 +43,7 @@ const Home = () => {
 
             <Link
               to="/signup"
-              className="rounded-xl border border-slate-300 px-8 py-4 font-semibold transition hover:bg-white"
+              className="create-account rounded-xl border border-slate-300 px-8 py-4 font-semibold transition hover:bg-[#72470a] hover:text-white"
             >
               Create Account
             </Link>
@@ -163,7 +163,7 @@ const Home = () => {
 
           <Link
             to="/shop"
-            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-7 py-4 font-semibold text-white transition hover:bg-slate-700"
+            className="shop-now mt-8 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-7 py-4 font-semibold text-white transition hover:bg-slate-700"
           >
             Browse Products
             <FaArrowRight />
@@ -188,7 +188,7 @@ const Home = () => {
 
         <Link
           to="/shop"
-          className="mt-10 inline-block rounded-xl bg-white px-8 py-4 font-bold text-[#8A735A] transition hover:scale-105"
+          className="shop-now mt-10 inline-block rounded-xl bg-white px-8 py-4 font-bold text-[#8A735A] transition hover:scale-105"
         >
           Explore Products
         </Link>

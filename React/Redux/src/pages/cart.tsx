@@ -86,7 +86,7 @@ const Cart = () => {
 
   <button
     onClick={() => dispatch(increaseQuantity(item.id))}
-    className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#D4C4AD] text-xl font-bold text-white transition hover:bg-[#BDA88B]"
+    className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#72470a] text-xl font-bold text-white transition hover:bg-[#BDA88B]"
   >
     +
   </button>
@@ -126,12 +126,12 @@ const Cart = () => {
                 </div>
               </div>
 
-              <button className="mt-8 w-full rounded-xl bg-slate-900 py-3 text-lg font-semibold text-white transition hover:bg-[#D4C4AD]">
+              <button className="shop-now mt-8 w-full rounded-xl bg-slate-900 py-3 text-lg font-semibold text-white transition hover:bg-[#8A735A]">
                 Checkout
               </button>
               <button
   onClick={() => dispatch(clearCart())}
-  className="mt-4 w-full rounded-xl border border-red-500 py-3 font-semibold text-red-500 transition hover:bg-red-500 hover:text-white"
+  className="shop-now mt-4 w-full rounded-xl border border-red-500 py-3 font-semibold text-red-500 transition hover:bg-red-500 hover:text-white"
 >
   Clear Cart
 </button>

@@ -117,14 +117,13 @@ const Navbar = () => {
             </Link>
 
             {user ? (
-              <button 
-                type="button"
-                aria-label="Logout"
+              <Link
+                to="/"
                 onClick={handleLogout}
                 className="rounded-xl p-3 text-slate-700 transition hover:bg-red-100 hover:text-red-600"
               >
                 <HiArrowRightOnRectangle size={22} />
-              </button>
+              </Link>
             ) : (
               <Link
                 to="/login"
@@ -133,9 +132,11 @@ const Navbar = () => {
                 <FaUserCircle size={22} />
               </Link>
             )}
-            {user && <Link to="/dashboard" className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-[#8A735A]">
-              <LuLayoutDashboard size={22} />
-            </Link>}
+            {user && user.role === "admin" && (
+              <Link to="/dashboard" className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-[#8A735A]">
+                <LuLayoutDashboard size={22} />
+              </Link>
+            )}
           </div>
         </div>
 
@@ -264,24 +265,25 @@ const Navbar = () => {
     Dashboard
   </Link>
 )}
-    {user ? (
-      <button
-        onClick={handleLogout}
-        className="flex w-full items-center gap-3 px-5 py-4 transition hover:bg-red-50"
-      >
-        <HiArrowRightOnRectangle size={22} />
-        Logout
-      </button>
-    ) : (
-      <Link
-        to="/login"
-        onClick={() => setIsMenuOpen(false)}
-        className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
-      >
-        <FaUserCircle size={20} />
-        Login
-      </Link>
-    )}
+   {user ? (
+  <Link
+    to="/"
+    onClick={handleLogout}
+    className="flex items-center gap-3 px-5 py-4 text-red-600 transition hover:bg-red-50"
+  >
+    <HiArrowRightOnRectangle size={22} />
+    Logout
+  </Link>
+) : (
+  <Link
+    to="/login"
+    onClick={() => setIsMenuOpen(false)}
+    className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+  >
+    <FaUserCircle size={20} />
+    Login
+  </Link>
+)}
   </div>
 </div>
 

@@ -85,7 +85,7 @@ const handleMouseLeave = () => {
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
 
-        <span className="absolute left-4 top-4 rounded-full bg-[#D4C4AD] px-3 py-1 text-xs font-semibold text-white shadow">
+        <span className="absolute left-4 top-4 rounded-full bg-[#72470a] px-3 py-1 text-xs font-semibold text-white shadow">
           {product.category}
         </span>
       </div>
@@ -146,7 +146,7 @@ const handleMouseLeave = () => {
           <button
           aria-label="Add to cart"
             onClick={handleAddToCart}
-            className="flex items-center justify-center rounded-xl bg-[#D4C4AD] py-3 text-white transition hover:bg-[#BDA88B]"
+            className="flex items-center justify-center rounded-xl bg-[#72470a] py-3 text-white transition hover:bg-[#BDA88B]"
           >
             <FaCartPlus size={18} />
           </button>

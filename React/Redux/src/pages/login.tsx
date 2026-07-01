@@ -118,7 +118,7 @@ return(
 
         <div className="mt-8 rounded-lg bg-slate-100 p-4 text-sm">
           <p className="mb-2 font-semibold">
-            DummyJSON Test Account
+            For Admin Access:
           </p>
 
           <p>
@@ -127,6 +127,19 @@ return(
 
           <p>
             Password: <strong>emilyspass</strong>
+          </p>
+        </div>
+         <div className="mt-8 rounded-lg bg-slate-100 p-4 text-sm">
+          <p className="mb-2 font-semibold">
+            For Normal User Access:
+          </p>
+
+          <p>
+            Username: <strong>michaelw</strong>
+          </p>
+
+          <p>
+            Password: <strong>michaelwpass</strong>
           </p>
         </div>
       </div>

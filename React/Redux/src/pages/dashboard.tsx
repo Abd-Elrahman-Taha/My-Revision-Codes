@@ -97,7 +97,7 @@ const Dashboard = () => {
               </h2>
             </div>
 
-            <div className="rounded-xl bg-blue-100 p-4 text-[#8A735A]">
+            <div className="rounded-xl bg-blue-100 p-4 text-[#2563eb]">
               <FaShoppingCart size={26} />
             </div>
           </div>
@@ -221,7 +221,7 @@ const Dashboard = () => {
 
             <Bar
               dataKey="orders"
-              fill="#D4C4AD"
+              fill="#72470a"
               radius={[10, 10, 0, 0]}
             />
 
