@@ -72,7 +72,7 @@ const Signup = () => {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#D4C4AD]"
                 required
               />
             </div>
@@ -88,7 +88,7 @@ const Signup = () => {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#D4C4AD]"
                 required
               />
             </div>
@@ -106,7 +106,7 @@ const Signup = () => {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#D4C4AD]"
               required
             />
           </div>
@@ -122,7 +122,7 @@ const Signup = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#D4C4AD]"
               required
             />
           </div>
@@ -138,7 +138,7 @@ const Signup = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#D4C4AD]"
               required
             />
           </div>
@@ -154,7 +154,7 @@ const Signup = () => {
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
-              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#D4C4AD]"
               required
             />
           </div>
@@ -167,7 +167,7 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="w-full rounded-xl bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
+            className="w-full rounded-xl bg-[#D4C4AD] py-3 font-semibold text-white transition hover:bg-[#BDA88B]"
           >
             Create Account
           </button>
@@ -178,7 +178,7 @@ const Signup = () => {
           Already have an account?{" "}
           <Link
             to="/login"
-            className="font-semibold text-blue-600 hover:underline"
+            className="font-semibold text-[#8A735A] hover:underline"
           >
             Login
           </Link>

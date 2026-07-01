@@ -1,104 +1,202 @@
-import {useEffect,useState} from "react";
-import {useAppDispatch, useAppSelector} from "../hooks/hooks.ts";
-import {fetchProducts} from "../features/products/productSlice.ts";
-import ProductCard from "../components/ProductCard.tsx";
+import { Link } from "react-router-dom";
+import {
+  FaShoppingBag,
+  FaShippingFast,
+  FaShieldAlt,
+  FaHeadset,
+  FaArrowRight,
+} from "react-icons/fa";
 
 const Home = () => {
-    const dispatch = useAppDispatch();
-    const {products, loading, error} = useAppSelector((state) => state.product);
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 8;
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const sortOrder = useAppSelector((state) => state.sort.sortBy);
-    const searchTerm = useAppSelector((state) => state.search.searchTerm);
-    const filteredProducts = products.filter((product) =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    const sortedProducts = [...filteredProducts];
+  return (
+    <main className="bg-[#F8F5F0]">
 
-    switch (sortOrder) {
-        case "price-asc":
-            sortedProducts.sort((a, b) => a.price - b.price);
-            break;
-        case "price-desc":
-            sortedProducts.sort((a, b) => b.price - a.price);
-            break;
-        case "rating-asc":
-            sortedProducts.sort((a, b) => a.rating - b.rating);
-            break;
-        case "rating-desc":
-            sortedProducts.sort((a, b) => b.rating - a.rating);
-            break;
-        default:
-            break;
-    }
-    const currentProducts = sortedProducts.slice(indexOfFirstItem, indexOfLastItem);
-    const totalPages = Math.ceil(sortedProducts.length / itemsPerPage);
+      {/* Hero */}
+      <section className="mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-between gap-12 px-6 py-20 lg:flex-row">
 
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
+        <div className="max-w-2xl">
+          <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-[#8A735A]">
+            Welcome to ShopX
+          </span>
 
-    return (
-  <main className="min-h-screen bg-slate-100">
-    <div className="mx-auto max-w-7xl px-6 py-10">
-      <h1 className="mb-8 text-4xl font-bold text-slate-800">
-        Our Products
-      </h1>
+          <h1 className="mt-6 text-5xl font-extrabold leading-tight text-slate-900 lg:text-7xl">
+            Discover the Best Products
+            <span className="block text-[#8A735A]">
+              at the Best Prices
+            </span>
+          </h1>
 
-      {loading === "pending" && (
-        <div className="flex justify-center py-20">
-          <div className="h-12 w-12 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
+          <p className="mt-6 text-lg leading-8 text-slate-600">
+            ShopX is a modern e-commerce platform offering high-quality
+            electronics, fashion, beauty, and lifestyle products with fast
+            shipping and secure shopping.
+          </p>
+
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Link
+              to="/shop"
+              className="flex items-center gap-2 rounded-xl bg-[#D4C4AD] px-8 py-4 font-semibold text-white transition hover:bg-[#BDA88B]"
+            >
+              Shop Now
+              <FaArrowRight />
+            </Link>
+
+            <Link
+              to="/signup"
+              className="rounded-xl border border-slate-300 px-8 py-4 font-semibold transition hover:bg-white"
+            >
+              Create Account
+            </Link>
+          </div>
         </div>
-      )}
 
-      {error && (
-        <div className="rounded-lg bg-red-100 p-4 text-red-600">
-          {error}
-        </div>
-      )}
-
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {currentProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
+        <div className="flex-1">
+          <img
+            src="/hero.jpg"
+            alt="Shopping"
+            className="mx-auto w-full max-w-xl rounded-3xl"
           />
-        ))}
-      </div>
-      <div className="mt-10 flex items-center justify-center gap-4">
-  <button
-    onClick={() => setCurrentPage((prev) => prev - 1)}
-    disabled={currentPage === 1}
-    className={`rounded-lg px-5 py-2 font-medium transition ${
-      currentPage === 1
-        ? "cursor-not-allowed bg-gray-300 text-gray-500"
-        : "bg-blue-500 text-white hover:bg-blue-600"
-    }`}
-  >
-    Previous
-  </button>
+        </div>
 
-  <span className="font-medium text-slate-700">
-    Page {currentPage} of {totalPages}
-  </span>
+      </section>
 
-  <button
-    onClick={() => setCurrentPage((prev) => prev + 1)}
-    disabled={currentPage === totalPages}
-    className={`rounded-lg px-5 py-2 font-medium transition ${
-      currentPage === totalPages
-        ? "cursor-not-allowed bg-gray-300 text-gray-500"
-        : "bg-blue-500 text-white hover:bg-blue-600"
-    }`}
-  >
-    Next
-  </button>
-</div>
-    </div>
-  </main>
-);
-}
+      {/* Features */}
 
-export default Home
+      <section className="bg-white py-20">
+
+        <div className="mx-auto max-w-7xl px-6">
+
+          <h2 className="mb-14 text-center text-4xl font-bold">
+            Why Choose ShopX?
+          </h2>
+
+          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+
+            <div className="rounded-3xl bg-[#F8F5F0] p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+              <FaShoppingBag
+                className="mb-6 text-[#8A735A]"
+                size={40}
+              />
+
+              <h3 className="mb-3 text-xl font-bold">
+                Premium Products
+              </h3>
+
+              <p className="text-slate-500">
+                Carefully selected products from trusted brands.
+              </p>
+            </div>
+
+            <div className="rounded-3xl bg-[#F8F5F0] p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+              <FaShippingFast
+                className="mb-6 text-green-600"
+                size={40}
+              />
+
+              <h3 className="mb-3 text-xl font-bold">
+                Fast Delivery
+              </h3>
+
+              <p className="text-slate-500">
+                Receive your order quickly wherever you are.
+              </p>
+            </div>
+
+            <div className="rounded-3xl bg-[#F8F5F0] p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+              <FaShieldAlt
+                className="mb-6 text-red-500"
+                size={40}
+              />
+
+              <h3 className="mb-3 text-xl font-bold">
+                Secure Payment
+              </h3>
+
+              <p className="text-slate-500">
+                Safe and encrypted payment methods for every purchase.
+              </p>
+            </div>
+
+            <div className="rounded-3xl bg-[#F8F5F0] p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+              <FaHeadset
+                className="mb-6 text-purple-600"
+                size={40}
+              />
+
+              <h3 className="mb-3 text-xl font-bold">
+                24/7 Support
+              </h3>
+
+              <p className="text-slate-500">
+                Our team is always available to help you.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* About */}
+
+      <section className="mx-auto flex max-w-7xl flex-col items-center gap-16 px-6 py-24 lg:flex-row">
+
+        <img
+          src="about.jpg"
+          alt="About Shop"
+          className="w-full max-w-lg rounded-3xl shadow-xl"
+        />
+
+        <div className="max-w-xl">
+
+          <h2 className="text-4xl font-bold">
+            Shopping Made Easy
+          </h2>
+
+          <p className="mt-6 text-lg leading-8 text-slate-600">
+            We believe online shopping should be simple, fast, and enjoyable.
+            ShopX combines a beautiful shopping experience with secure
+            authentication, personalized carts, advanced search, sorting,
+            pagination, and an admin dashboard.
+          </p>
+
+          <Link
+            to="/shop"
+            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-7 py-4 font-semibold text-white transition hover:bg-slate-700"
+          >
+            Browse Products
+            <FaArrowRight />
+          </Link>
+
+        </div>
+
+      </section>
+
+      {/* CTA */}
+
+      <section className="bg-[#D4C4AD] py-24 text-center text-white">
+
+        <h2 className="text-5xl font-bold">
+          Ready to Start Shopping?
+        </h2>
+
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-blue-100">
+          Thousands of customers trust ShopX every day. Join them and
+          discover an amazing shopping experience.
+        </p>
+
+        <Link
+          to="/shop"
+          className="mt-10 inline-block rounded-xl bg-white px-8 py-4 font-bold text-[#8A735A] transition hover:scale-105"
+        >
+          Explore Products
+        </Link>
+
+      </section>
+
+    </main>
+  );
+};
+
+export default Home;

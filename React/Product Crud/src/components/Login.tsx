@@ -92,7 +92,7 @@ export default function Login() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white p-2 rounded"
+          className="w-full bg-blue-500 hover:bg-[#D4C4AD] text-white p-2 rounded"
         >
           {loading ? "Logging in..." : "Login"}
         </button>

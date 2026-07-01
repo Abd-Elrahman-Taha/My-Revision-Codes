@@ -39,6 +39,7 @@ const Login = () => {
         dispatch(loginUser(formData));
     }
 
+    console.log("user", user?.role);
 
 return(
     <>
@@ -67,7 +68,7 @@ return(
               value={formData.username}
               onChange={handleChange}
               placeholder="Enter your username"
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+              className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-[#D4C4AD]"
               required
             />
           </div>
@@ -83,7 +84,7 @@ return(
               value={formData.password}
               onChange={handleChange}
               placeholder="Enter your password"
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+              className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-[#D4C4AD]"
               required
             />
           </div>
@@ -97,7 +98,7 @@ return(
           <button
             type="submit"
             disabled={loading === "pending"}
-            className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-400"
+            className="w-full rounded-lg bg-[#D4C4AD] py-3 font-semibold text-white transition hover:bg-[#BDA88B] disabled:cursor-not-allowed disabled:bg-blue-400"
           >
             {loading === "pending"
               ? "Logging in..."
@@ -109,7 +110,7 @@ return(
           Don't have an account?{" "}
           <Link
             to="/signup"
-            className="font-semibold text-blue-600 hover:underline"
+            className="font-semibold text-[#8A735A] hover:underline"
           >
             Sign Up
           </Link>

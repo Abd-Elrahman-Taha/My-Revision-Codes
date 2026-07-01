@@ -72,7 +72,7 @@ const EditModel = ( { product, onSave, onClose}: Props ) => {
   
           <button
             onClick={handleSave}
-            className="btn1 px-4 py-2 bg-blue-600 text-white rounded"
+            className="btn1 px-4 py-2 bg-[#D4C4AD] text-white rounded"
           >
             Save
           </button>

@@ -101,7 +101,7 @@ const handleMouseLeave = () => {
 
       <div className="p-5 flex flex-col flex-grow">
         <div className="flex items-center justify-between mb-3">
-          <span className="bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full">
+          <span className="bg-blue-100 text-[#8A735A] text-xs font-semibold px-3 py-1 rounded-full">
             Latest
           </span>
 

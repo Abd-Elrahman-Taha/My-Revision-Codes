@@ -6,6 +6,7 @@ import { useAppDispatch , useAppSelector } from "../hooks/hooks";
 import EditModel from "./EditModel";
 import {useNavigate} from 'react-router-dom'
 import { FaCartPlus, FaEdit, FaTrash, FaStar} from "react-icons/fa";
+import { useRef } from "react";
 interface Props {
   product: Product;
 }
@@ -13,8 +14,52 @@ interface Props {
 const ProductCard = ({ product }: Props) => {
     const dispatch = useAppDispatch();
     const {isOpen} = useAppSelector((state) => state.editProduct);
-    const user = useAppSelector((state) => state.auth.user);
+    const {user} = useAppSelector((state) => state.auth);
     const navigate = useNavigate();
+
+    const cardRef = useRef<HTMLDivElement>(null);
+
+const handleMouseMove = (e: React.MouseEvent) => {
+  const card = cardRef.current;
+  if (!card) return;
+
+  const rect = card.getBoundingClientRect();
+
+  const intensity = 5; // قوة الانحناء
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const normalizedX = (x / rect.width - 0.5) * 2;
+  const normalizedY = (y / rect.height - 0.5) * 2;
+
+  const rotateY = normalizedX * intensity;
+  const rotateX = -normalizedY * intensity;
+
+card.style.setProperty("--mouse-x", `${x}px`);
+card.style.setProperty("--mouse-y", `${y}px`);
+
+card.style.setProperty("--rotate-x", `${rotateX}deg`);
+card.style.setProperty("--rotate-y", `${rotateY}deg`);
+  const pushBack = 40;
+
+card.style.setProperty("--translate-z", `${-pushBack}px`);
+};
+
+const handleMouseLeave = () => {
+  const card = cardRef.current;
+  if (!card) return;
+  card.style.setProperty("--rotate-x", "0deg");
+  card.style.setProperty("--rotate-y", "0deg");
+  card.style.setProperty("--scale", "1");
+};
+
+
+
+
+
+
+
     const handleAddToCart = () => {
         if(!user){
             alert("Please login to add to cart");
@@ -25,7 +70,12 @@ const ProductCard = ({ product }: Props) => {
     }
     return (
   <>
-    <div className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+    <div 
+      ref={cardRef}
+      className="product-card group overflow-hidden rounded-2xl border border-border bg-surface shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
 
       {/* Image */}
       <div className="relative h-64 overflow-hidden bg-slate-100">
@@ -35,7 +85,7 @@ const ProductCard = ({ product }: Props) => {
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
 
-        <span className="absolute left-4 top-4 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white shadow">
+        <span className="absolute left-4 top-4 rounded-full bg-[#D4C4AD] px-3 py-1 text-xs font-semibold text-white shadow">
           {product.category}
         </span>
       </div>
@@ -77,7 +127,7 @@ const ProductCard = ({ product }: Props) => {
               Price
             </p>
 
-            <h3 className="text-3xl font-extrabold text-blue-600">
+            <h3 className="text-3xl font-extrabold text-[#8A735A]">
               ${product.price}
             </h3>
           </div>
@@ -85,24 +135,32 @@ const ProductCard = ({ product }: Props) => {
         </div>
 
         {/* Buttons */}
-        <div className="grid grid-cols-3 gap-3">
+        <div
+  className={`grid gap-3 ${
+    user?.role === "admin"
+      ? "grid-cols-3"
+      : "grid-cols-1"
+  }`}
+>
 
           <button
           aria-label="Add to cart"
             onClick={handleAddToCart}
-            className="flex items-center justify-center rounded-xl bg-blue-600 py-3 text-white transition hover:bg-blue-700"
+            className="flex items-center justify-center rounded-xl bg-[#D4C4AD] py-3 text-white transition hover:bg-[#BDA88B]"
           >
             <FaCartPlus size={18} />
           </button>
 
-          <button
-          aria-label="Edit"
-            onClick={() => dispatch(openEditProduct(product))}
-            className="flex items-center justify-center rounded-xl border border-emerald-600 text-emerald-600 transition hover:bg-emerald-600 hover:text-white"
-          >
-            <FaEdit size={18} />
+          {user?.role === "admin" && (
+            <button
+              aria-label="Edit"
+              onClick={() => dispatch(openEditProduct(product))}
+              className="flex items-center justify-center rounded-xl border border-emerald-600 text-emerald-600 transition hover:bg-emerald-600 hover:text-white"
+            >
+              <FaEdit size={18} />
           </button>
-
+          )}
+          {user?.role === "admin" && (
           <button
             type="button"
             aria-label="Delete"
@@ -111,6 +169,7 @@ const ProductCard = ({ product }: Props) => {
           >
             <FaTrash size={18} />
           </button>
+          )}
 
         </div>
 

@@ -97,7 +97,7 @@ if (sortBy === "az") {
             border border-gray-700
             outline-none
             transition-all duration-300
-            focus:border-blue-500
+            focus:border-[#D4C4AD]
             focus:shadow-[0_0_10px_rgba(59,130,246,0.5)]
           "
         />

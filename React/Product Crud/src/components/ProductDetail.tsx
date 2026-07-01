@@ -36,7 +36,7 @@ export default function ProductDetail() {
 
           {/* Info */}
           <div className="flex flex-col justify-center">
-            <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full w-fit text-sm font-medium">
+            <span className="bg-blue-100 text-[#8A735A] px-3 py-1 rounded-full w-fit text-sm font-medium">
               Product #{product.id}
             </span>
 

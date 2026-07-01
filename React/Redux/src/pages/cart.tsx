@@ -48,7 +48,7 @@ const Cart = () => {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="flex items-center justify-between rounded-2xl bg-white p-5 shadow transition hover:shadow-lg"
+                  className="flex flex-col gap-4 rounded-2xl bg-white p-5 shadow transition hover:shadow-lg sm:flex-row sm:items-center sm:justify-between"
                 >
                   <div className="flex items-center gap-5">
                     <img
@@ -66,7 +66,7 @@ const Cart = () => {
                         {item.category}
                       </p>
 
-                      <p className="mt-2 text-lg font-semibold text-blue-600">
+                      <p className="mt-2 text-lg font-semibold text-[#8A735A]">
                         ${item.price}
                       </p>
                     </div>
@@ -86,7 +86,7 @@ const Cart = () => {
 
   <button
     onClick={() => dispatch(increaseQuantity(item.id))}
-    className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-xl font-bold text-white transition hover:bg-blue-700"
+    className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#D4C4AD] text-xl font-bold text-white transition hover:bg-[#BDA88B]"
   >
     +
   </button>
@@ -120,13 +120,13 @@ const Cart = () => {
                 <div className="flex justify-between">
                   <span>Total</span>
 
-                  <span className="font-bold text-blue-600">
+                  <span className="font-bold text-[#8A735A]">
                     ${total.toFixed(2)}
                   </span>
                 </div>
               </div>
 
-              <button className="mt-8 w-full rounded-xl bg-slate-900 py-3 text-lg font-semibold text-white transition hover:bg-blue-600">
+              <button className="mt-8 w-full rounded-xl bg-slate-900 py-3 text-lg font-semibold text-white transition hover:bg-[#D4C4AD]">
                 Checkout
               </button>
               <button

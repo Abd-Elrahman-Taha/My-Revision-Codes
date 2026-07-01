@@ -16,6 +16,7 @@ export interface User {
   image: string;
   accessToken: string;
   refreshToken: string;
+  role: string;
 }
 
 export interface AuthState {
