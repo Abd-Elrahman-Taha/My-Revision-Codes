@@ -7,9 +7,24 @@ import Cart from "./pages/cart.tsx";
 import Signup from "./pages/signup.tsx";
 import Dashboard from "./pages/dashboard.tsx";
 import Home from "./pages/home.tsx";
+import { useAppDispatch, useAppSelector } from './hooks/hooks.ts';
+import { useEffect } from 'react';
+import { loadCart } from './features/products/cartSlice.ts';
 import './App.css'
 
 function App() {
+ const dispatch = useAppDispatch();
+  const user = useAppSelector((state ) => state.auth.user);
+
+  useEffect(() => {
+    if (!user) return;
+
+    const savedCart = localStorage.getItem(`cart-${user.id}`);
+
+    if (savedCart) {
+      dispatch(loadCart(JSON.parse(savedCart)));
+    }
+  }, [dispatch, user]);
 
 
   return (
