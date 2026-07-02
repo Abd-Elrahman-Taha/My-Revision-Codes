@@ -138,7 +138,7 @@ return(
           <button
             type="submit"
             disabled={loading === "pending"}
-            className="w-full rounded-lg bg-[#D4C4AD] py-3 font-semibold text-white transition hover:bg-[#BDA88B] disabled:cursor-not-allowed disabled:bg-blue-400"
+            className="shop-now w-full rounded-lg bg-[#72470a] py-3 font-semibold text-white transition hover:bg-[#BDA88B] disabled:cursor-not-allowed disabled:bg-blue-400"
           >
             {loading === "pending"
               ? "Logging in..."

@@ -55,7 +55,7 @@ const orderSlice = createSlice({
         userId: action.payload.userId,
         items: action.payload.items,
         total: action.payload.total,
-        status: "Pending",
+        status: "Processing",
         createdAt: new Date().toISOString(),
       };
 

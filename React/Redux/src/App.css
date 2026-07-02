@@ -25,6 +25,7 @@
         translateZ(var(--translate-z, 0px));
 
     transition: transform 0.12s ease-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 .product-card::before {
     content: '';
@@ -72,6 +73,8 @@
 
 .shop-now , .create-account {
     transition: all 0.3s ease-in-out;
+    box-shadow:  0 5px 15px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 
 }
 
@@ -81,4 +84,13 @@
 }
 .image {
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8);
+}
+
+.welcome {
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, .2);
 }

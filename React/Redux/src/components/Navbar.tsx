@@ -24,7 +24,6 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const items = useAppSelector((state) => state.cart.items);
   const { user } = useAppSelector((state) => state.auth);
   const searchTerm = useAppSelector((state) => state.search.searchTerm);
@@ -42,7 +41,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-lg shadow-sm">
+    <header className="navbar sticky top-0 z-50 border-b border-slate-200  backdrop-blur-lg shadow-sm">
       <div className="mx-auto max-w-7xl px-4">
 
         {/* ================= Desktop ================= */}
@@ -122,79 +121,72 @@ const Navbar = () => {
               </Link>
               
             )}
-           <div className="relative">
+        <div className="group relative">
   <button
     type="button"
     aria-label="Profile"
-    onClick={() => setIsProfileOpen(!isProfileOpen)}
     className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-[#8A735A]"
   >
     <FaUserCircle size={22} />
   </button>
 
-  {isProfileOpen && (
-    <div className="absolute right-0 mt-3 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
-      {user ? (
-        <>
-          <div className="border-b px-5 py-4">
-            <p className="font-semibold">{user.firstName}</p>
-            <p className="text-sm text-slate-500">
-              {user.role}
-            </p>
-          </div>
+  {/* Invisible bridge to prevent flickering */}
+  <div className="absolute right-0 top-full h-3 w-56" />
 
-          <Link
-            to="/orders"
-            onClick={() => setIsProfileOpen(false)}
-            className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
-          >
-            <LuListChecks size={20} />
-            My Orders
-          </Link>
+  <div className="invisible absolute right-0 top-full mt-3 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+    {user ? (
+      <>
+        <div className="border-b px-5 py-4">
+          <p className="font-semibold">{user.firstName}</p>
+          <p className="text-sm text-slate-500">
+            {user.role}
+          </p>
+        </div>
 
-          <Link
-            to="/tracking"
-            onClick={() => setIsProfileOpen(false)}
-            className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
-          >
-            <LuTruck size={20} />
-            Track Orders
-          </Link>
-
-          {user.role === "admin" && (
-            <Link
-              to="/dashboard"
-              onClick={() => setIsProfileOpen(false)}
-              className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
-            >
-              <LuLayoutDashboard size={20} />
-              Dashboard
-            </Link>
-          )}
-
-          <button
-            onClick={() => {
-              handleLogout();
-              setIsProfileOpen(false);
-            }}
-            className="flex w-full items-center gap-3 px-5 py-4 text-red-600 transition hover:bg-red-50"
-          >
-            <HiArrowRightOnRectangle size={20} />
-            Logout
-          </button>
-        </>
-      ) : (
         <Link
-          to="/login"
-          onClick={() => setIsProfileOpen(false)}
+          to="/orders"
           className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
         >
-          <FaUserCircle size={20} />
-          Login
+          <LuListChecks size={20} />
+          My Orders
         </Link>
-      )}
-    </div>
-  )}
+
+        <Link
+          to="/tracking"
+          className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+        >
+          <LuTruck size={20} />
+          Track Orders
+        </Link>
+
+        {user.role === "admin" && (
+          <Link
+            to="/dashboard"
+            className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+          >
+            <LuLayoutDashboard size={20} />
+            Dashboard
+          </Link>
+        )}
+
+        <button
+          onClick={handleLogout}
+          className="flex w-full items-center gap-3 px-5 py-4 text-red-600 transition hover:bg-red-50"
+        >
+          <HiArrowRightOnRectangle size={20} />
+          Logout
+        </button>
+      </>
+    ) : (
+      <Link
+        to="/login"
+        className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+      >
+        <FaUserCircle size={20} />
+        Login
+      </Link>
+    )}
+  </div>
 </div>
           </div>
         </div>
