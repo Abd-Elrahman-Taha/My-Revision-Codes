@@ -12,7 +12,6 @@ import {
   HiXMark,
   HiShoppingBag,
 } from "react-icons/hi2";
-import { Truck } from "lucide-react";
 
 import { useAppSelector, useAppDispatch } from "../hooks/hooks";
 import { setSearchTerm } from "../features/products/searchSlice";
