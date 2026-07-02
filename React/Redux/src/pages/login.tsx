@@ -36,12 +36,25 @@ const Login = () => {
     toast.success("Welcome Admin 👑", {
       position: "top-center",
       style: {
-        border: "1px solid #4CAF50",
-        borderLeft: "4px solid #4CAF50",
+        border: "1px solid #fcd600",
+        borderLeft: "4px solid #fcd600",
         padding: "16px",
-        color: "#155724",
-        background: "#D4EDDA",
-      },
+        color: "#ffae00",
+        background: "#ffffff",
+      }, 
+      
+    });
+  } else{
+    toast.success("Welcome User 👤", {
+      position: "top-center",
+      style: {
+        border: "1px solid #551cf3",
+        borderLeft: "4px solid #551cf3",
+        padding: "16px",
+        color: "#551cf3",
+        background: "#ffffff",
+      }, 
+
     });
   }
 

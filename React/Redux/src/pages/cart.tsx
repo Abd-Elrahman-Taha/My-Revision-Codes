@@ -4,7 +4,8 @@ import {
   decreaseQuantity,
   clearCart,
 } from "../features/products/cartSlice";
-import { Trash2 } from "lucide-react";
+import {  Trash2 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { removeFromCart } from "../features/products/cartSlice";
 
 const Cart = () => {
@@ -118,15 +119,17 @@ const Cart = () => {
                 </div>
               </div>
 
-              <button className="shop-now mt-8 w-full rounded-xl bg-slate-900 py-3 text-lg font-semibold text-white transition hover:bg-[#8A735A]">
+              <Link
+                to="/checkout"
+                className="shop-now mt-6 block w-full rounded-xl bg-[#72470a] py-3 text-center font-semibold text-white transition hover:bg-[#BDA88B]">
                 Checkout
-              </button>
+                </Link>
               <button
-  onClick={() => dispatch(clearCart())}
-  className="shop-now mt-4 w-full rounded-xl border border-red-500 py-3 font-semibold text-red-500 transition hover:bg-red-500 hover:text-white"
->
-  Clear Cart
-</button>
+                 onClick={() => dispatch(clearCart())}
+                 className="shop-now mt-4 w-full rounded-xl border border-red-500 py-3 font-semibold text-red-500 transition hover:bg-red-500 hover:text-white"
+          >
+            Clear Cart
+          </button>
             </div>
           </div>
         )}

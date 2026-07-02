@@ -54,7 +54,7 @@ const Home = () => {
           <img
             src="/hero.jpg"
             alt="Shopping"
-            className="mx-auto w-full max-w-xl rounded-3xl"
+            className="image mx-auto w-full max-w-xl rounded-3xl"
           />
         </div>
 
@@ -145,7 +145,7 @@ const Home = () => {
         <img
           src="about.jpg"
           alt="About Shop"
-          className="w-full max-w-lg rounded-3xl shadow-xl"
+          className="image w-full max-w-lg rounded-3xl shadow-xl"
         />
 
         <div className="max-w-xl">

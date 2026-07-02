@@ -7,6 +7,9 @@ import Cart from "./pages/cart.tsx";
 import Signup from "./pages/signup.tsx";
 import Dashboard from "./pages/dashboard.tsx";
 import Home from "./pages/home.tsx";
+import Checkout from "./pages/checkout.tsx";
+import Orders from "./pages/orders.tsx";
+import Tracking from "./pages/tracking.tsx";
 import { useAppDispatch, useAppSelector } from './hooks/hooks.ts';
 import { useEffect } from 'react';
 import { loadCart } from './features/products/cartSlice.ts';
@@ -44,6 +47,9 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/orders" element={<Orders />} />
+      <Route path="/tracking" element={<Tracking />} />
     </Routes>
     
     </>

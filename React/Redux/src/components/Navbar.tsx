@@ -12,20 +12,20 @@ import {
   HiXMark,
   HiShoppingBag,
 } from "react-icons/hi2";
-
+import { Truck } from "lucide-react";
 
 import { useAppSelector, useAppDispatch } from "../hooks/hooks";
 import { setSearchTerm } from "../features/products/searchSlice";
 import { setSortBy } from "../features/products/sortSlice";
 import { logout } from "../features/products/auth/authSlice";
 import { clearCart } from "../features/products/cartSlice";
-import { LuLayoutDashboard } from "react-icons/lu";
+import { LuLayoutDashboard, LuListChecks, LuTruck } from "react-icons/lu";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const items = useAppSelector((state) => state.cart.items);
   const { user } = useAppSelector((state) => state.auth);
   const searchTerm = useAppSelector((state) => state.search.searchTerm);
@@ -116,27 +116,87 @@ const Navbar = () => {
               )}
             </Link>
 
-            {user ? (
-              <Link
-                to="/"
-                onClick={handleLogout}
-                className="rounded-xl p-3 text-slate-700 transition hover:bg-red-100 hover:text-red-600"
-              >
-                <HiArrowRightOnRectangle size={22} />
-              </Link>
-            ) : (
-              <Link
-                to="/login"
-                className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-[#8A735A]"
-              >
-                <FaUserCircle size={22} />
-              </Link>
-            )}
+            
             {user && user.role === "admin" && (
               <Link to="/dashboard" className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-[#8A735A]">
                 <LuLayoutDashboard size={22} />
               </Link>
+              
             )}
+           <div className="relative">
+  <button
+    type="button"
+    aria-label="Profile"
+    onClick={() => setIsProfileOpen(!isProfileOpen)}
+    className="rounded-xl p-3 text-slate-700 transition hover:bg-slate-100 hover:text-[#8A735A]"
+  >
+    <FaUserCircle size={22} />
+  </button>
+
+  {isProfileOpen && (
+    <div className="absolute right-0 mt-3 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+      {user ? (
+        <>
+          <div className="border-b px-5 py-4">
+            <p className="font-semibold">{user.firstName}</p>
+            <p className="text-sm text-slate-500">
+              {user.role}
+            </p>
+          </div>
+
+          <Link
+            to="/orders"
+            onClick={() => setIsProfileOpen(false)}
+            className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+          >
+            <LuListChecks size={20} />
+            My Orders
+          </Link>
+
+          <Link
+            to="/tracking"
+            onClick={() => setIsProfileOpen(false)}
+            className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+          >
+            <LuTruck size={20} />
+            Track Orders
+          </Link>
+
+          {user.role === "admin" && (
+            <Link
+              to="/dashboard"
+              onClick={() => setIsProfileOpen(false)}
+              className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+            >
+              <LuLayoutDashboard size={20} />
+              Dashboard
+            </Link>
+          )}
+
+          <button
+            onClick={() => {
+              handleLogout();
+              setIsProfileOpen(false);
+            }}
+            className="flex w-full items-center gap-3 px-5 py-4 text-red-600 transition hover:bg-red-50"
+          >
+            <HiArrowRightOnRectangle size={20} />
+            Logout
+          </button>
+        </>
+      ) : (
+        <Link
+          to="/login"
+          onClick={() => setIsProfileOpen(false)}
+          className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+        >
+          <FaUserCircle size={20} />
+          Login
+        </Link>
+      )}
+    </div>
+  )}
+</div>
           </div>
         </div>
 
@@ -255,6 +315,25 @@ const Navbar = () => {
         </span>
       )}
     </Link>
+    {/* Orders */}
+<Link
+  to="/orders"
+  onClick={() => setIsMenuOpen(false)}
+  className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+>
+  <LuListChecks size={22} />
+  My Orders
+</Link>
+
+{/* Tracking */}
+<Link
+  to="/tracking"
+  onClick={() => setIsMenuOpen(false)}
+  className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-100"
+>
+  <LuTruck size={22} />
+  Track Orders
+</Link>
       {user && (
   <Link
     to="/dashboard"
