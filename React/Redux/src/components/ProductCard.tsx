@@ -119,7 +119,7 @@ const handleMouseLeave = () => {
       </div>
 
       {/* Body */}
-      <div className="space-y-5 p-6">
+      <div className="bg-white space-y-5 p-6">
 
         {/* Title */}
         <div>

@@ -18,7 +18,7 @@ const Cart = () => {
   
 
   return (
-    <main className="min-h-screen bg-slate-100 py-10">
+    <main className="body min-h-screen bg-slate-100 py-10">
       <div className="mx-auto max-w-7xl px-6">
         <h1 className="products mb-10 text-4xl font-bold text-slate-900">
           Shopping Cart

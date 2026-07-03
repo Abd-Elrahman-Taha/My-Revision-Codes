@@ -9,7 +9,7 @@ import {
 
 const Home = () => {
   return (
-    <main className="bg-[#F8F5F0]">
+    <main className="body">
 
       {/* Hero */}
       <section className="mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-between gap-12 px-6 py-20 lg:flex-row">

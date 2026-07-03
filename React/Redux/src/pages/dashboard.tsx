@@ -53,7 +53,7 @@ const colors = [
 
 const Dashboard = () => {
   return (
-    <main className="min-h-screen bg-slate-100 p-6">
+    <main className="body min-h-screen bg-slate-100 p-6">
 
       {/* Header */}
 

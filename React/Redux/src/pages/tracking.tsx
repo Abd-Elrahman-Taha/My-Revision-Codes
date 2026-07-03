@@ -28,7 +28,7 @@ const OrderTracking = () => {
 
   if (!orders.length) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-slate-100">
+      <main className="body flex min-h-screen items-center justify-center bg-slate-100">
         <div className="rounded-3xl bg-white p-10 shadow text-center">
           <Package size={60} className="mx-auto text-slate-400" />
           <h1 className="products mt-4 text-3xl font-bold">
@@ -47,7 +47,7 @@ const OrderTracking = () => {
   }
 
   return (
-    <main className="min-h-screen bg-slate-100 py-10">
+    <main className="body min-h-screen bg-slate-100 py-10">
       <div className="mx-auto max-w-6xl px-6">
 
         <h1 className="products mb-8 text-4xl font-bold">

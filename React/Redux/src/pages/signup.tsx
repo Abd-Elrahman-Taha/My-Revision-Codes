@@ -43,7 +43,7 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-10">
+    <main className="body flex min-h-screen items-center justify-center bg-slate-100 px-4 py-10">
       <div className="w-full max-w-lg rounded-3xl bg-white p-8 shadow-xl">
 
         <h1 className="text-center text-3xl font-bold">
