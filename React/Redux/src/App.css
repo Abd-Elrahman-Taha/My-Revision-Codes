@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
+
+body {
+    font-family: "Manrope", sans-serif;
+}
 
 .logout{
     font-size: large;
@@ -93,4 +98,23 @@
 
 .navbar {
     background-color: rgba(255, 255, 255, .2);
+}
+.main {
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.781);
+}
+.main2 {
+    text-shadow: 5px 5px 10px rgba(138, 130, 130, 0.815);
+}
+.description {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.products{
+    text-decoration: underline;
+    text-decoration-color: #72470a;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 10px;
+    text-decoration-style: solid;
+    text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.342);    
 }

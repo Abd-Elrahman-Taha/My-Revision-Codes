@@ -31,7 +31,7 @@ const OrderTracking = () => {
       <main className="flex min-h-screen items-center justify-center bg-slate-100">
         <div className="rounded-3xl bg-white p-10 shadow text-center">
           <Package size={60} className="mx-auto text-slate-400" />
-          <h1 className="mt-4 text-3xl font-bold">
+          <h1 className="products mt-4 text-3xl font-bold">
             No Orders Found
           </h1>
 
@@ -50,7 +50,7 @@ const OrderTracking = () => {
     <main className="min-h-screen bg-slate-100 py-10">
       <div className="mx-auto max-w-6xl px-6">
 
-        <h1 className="mb-8 text-4xl font-bold">
+        <h1 className="products mb-8 text-4xl font-bold">
           Order Tracking
         </h1>
 

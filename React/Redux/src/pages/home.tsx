@@ -18,15 +18,14 @@ const Home = () => {
           <span className="welcome rounded-full bg-[#72470a] px-4 py-2 text-sm font-semibold text-white">
             Welcome to ShopX
           </span>
-
-          <h1 className="mt-6 text-5xl font-extrabold leading-tight text-slate-900 lg:text-7xl">
+          <h1 className="main mt-6 text-5xl font-extrabold leading-tight text-slate-900 lg:text-7xl">
             Discover the Best Products
-            <span className="block text-[#8A735A]">
+            <span className="main2 block text-[#8A735A]">
               at the Best Prices
             </span>
           </h1>
 
-          <p className="mt-6 text-lg leading-8 text-slate-600">
+          <p className="description mt-6 text-lg leading-8 text-black ">
             ShopX is a modern e-commerce platform offering high-quality
             electronics, fashion, beauty, and lifestyle products with fast
             shipping and secure shopping.

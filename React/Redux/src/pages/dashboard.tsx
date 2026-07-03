@@ -58,12 +58,12 @@ const Dashboard = () => {
       {/* Header */}
 
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-slate-800">
+        <h1 className="products text-4xl font-bold text-slate-800">
           Admin Dashboard
         </h1>
 
         <p className="mt-2 text-slate-500">
-          Welcome back! Here's what's happening today.
+          Welcome back Boss! Here's what's happening today.
         </p>
       </div>
 

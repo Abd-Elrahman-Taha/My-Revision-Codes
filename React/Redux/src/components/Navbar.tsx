@@ -12,6 +12,8 @@ import {
   HiXMark,
   HiShoppingBag,
 } from "react-icons/hi2";
+import { SiShopify } from "react-icons/si";
+
 
 import { useAppSelector, useAppDispatch } from "../hooks/hooks";
 import { setSearchTerm } from "../features/products/searchSlice";
@@ -49,11 +51,14 @@ const Navbar = () => {
 
           {/* Logo */}
           <Link
-            to="/"
-            className="text-3xl font-black tracking-tight text-slate-900"
-          >
-            Shop<span className="text-[#8A735A]">X</span>
-          </Link>
+  to="/"
+  className="flex items-center gap-2 text-3xl font-black tracking-tight text-slate-900"
+>
+  <SiShopify className="text-[#72470a] text-4xl" />
+  <span>
+    Shop<span className="text-[#72470a]">X</span>
+  </span>
+</Link>
 
           {/* Search */}
           <div className="relative w-full max-w-md">
@@ -198,12 +203,15 @@ const Navbar = () => {
           {/* Top Row */}
           <div className="flex h-16 items-center justify-between">
 
-            <Link
-              to="/"
-              className="text-3xl font-black text-slate-900"
-            >
-              Shop<span className="text-[#8A735A]">X</span>
-            </Link>
+                <Link
+  to="/"
+  className="flex items-center gap-2 text-3xl font-black tracking-tight text-slate-900"
+>
+  <SiShopify className="text-[#72470a] text-4xl" />
+  <span>
+    Shop<span className="text-[#8A735A]">X</span>
+  </span>
+</Link>
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}

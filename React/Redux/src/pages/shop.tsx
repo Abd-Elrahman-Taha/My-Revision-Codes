@@ -43,7 +43,7 @@ const Shop = () => {
     return (
 <main className="min-h-screen bg-background">
       <div className="mx-auto max-w-7xl px-6 py-10">
-      <h1 className="mb-8 text-4xl font-extrabold text-text">
+      <h1 className="products mb-8 text-4xl font-extrabold text-text">
   Our Products
 </h1>
 
