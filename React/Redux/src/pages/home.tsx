@@ -70,7 +70,7 @@ const reviews = [
   },
   {
     id: 4,
-    name: "Mariam Ibrahim",
+    name: "Eman Adel",
     rating: 5,
     review:
       "One of the best online shopping experiences I've had.",
