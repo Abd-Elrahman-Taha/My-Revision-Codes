@@ -6,8 +6,76 @@ import {
   FaHeadset,
   FaArrowRight,
 } from "react-icons/fa";
+import {useState , useEffect} from 'react'
 
 const Home = () => {
+
+const [currentImageIndex, setCurrentImageIndex] = useState(0);
+const [currentImageIndex2, setCurrentImageIndex2] = useState(0);
+const [currentReview, setCurrentReview] = useState(0);
+  const imageContainer1 = [
+    "/image (9).jpg",
+    "/image (1).jpg",
+    "/image (2).jpg",
+    "/image (3).jpg",
+    "/image (4).jpg",
+    
+  ]
+  const imageContainer2 = [
+    "/image (10).jpg",
+    "/image (5).jpg",
+    "/image (6).jpg",
+    "/image (7).jpg",
+    "/image (8).jpg",
+  ]
+  
+  useEffect(() =>{
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imageContainer1.length);
+    }, 3000);
+    const interval2 = setInterval(() => {
+      setCurrentImageIndex2((prevIndex) => (prevIndex + 1) % imageContainer2.length);
+    }, 3000);
+     const interval3 = setInterval(() => {
+    setCurrentReview((prev) => (prev + 1) % reviews.length);
+  }, 4000);
+    return () => {
+      clearInterval(interval);
+      clearInterval(interval2);
+      clearInterval(interval3);
+    };
+
+  }, [])
+const reviews = [
+  {
+    id: 1,
+    name: "Ahmed Hassan",
+    rating: 5,
+    review:
+      "Amazing quality and super fast delivery. Definitely ordering again!",
+  },
+  {
+    id: 2,
+    name: "Sarah Ali",
+    rating: 4,
+    review:
+      "Packaging was excellent and customer service was very helpful.",
+  },
+  {
+    id: 3,
+    name: "John Smith",
+    rating: 5,
+    review:
+      "The checkout process was smooth and shipping was faster than expected.",
+  },
+  {
+    id: 4,
+    name: "Mariam Ibrahim",
+    rating: 5,
+    review:
+      "One of the best online shopping experiences I've had.",
+  },
+];
   return (
     <main className="body">
 
@@ -50,11 +118,23 @@ const Home = () => {
         </div>
 
         <div className="flex-1">
-          <img
-            src="/hero.jpg"
-            alt="Shopping"
-            className="image mx-auto w-full max-w-xl rounded-3xl"
-          />
+          <div className="flex-1 overflow-hidden rounded-3xl">
+  <div
+    className="flex transition-transform duration-700 ease-in-out"
+    style={{
+      transform: `translateX(-${currentImageIndex * 100}%)`,
+    }}
+  >
+    {imageContainer1.map((image, index) => (
+      <img
+        key={index}
+        src={image}
+        alt={`Slide ${index}`}
+        className="w-full max-w-xl flex-shrink-0 rounded-3xl"
+      />
+    ))}
+  </div>
+</div>
         </div>
 
       </section>
@@ -139,43 +219,131 @@ const Home = () => {
 
       {/* About */}
 
-      <section className="mx-auto flex max-w-7xl flex-col items-center gap-16 px-6 py-24 lg:flex-row">
+     {/* About */}
 
-        <img
-          src="about.jpg"
-          alt="About Shop"
-          className="image w-full max-w-lg rounded-3xl shadow-xl"
-        />
+<section className="mx-auto flex max-w-7xl flex-col items-center gap-16 px-6 py-24 lg:flex-row">
 
-        <div className="max-w-xl">
+  {/* Slider */}
+  <div className="w-full lg:w-1/2">
+    <div className="overflow-hidden rounded-3xl shadow-xl">
+      <div
+        className="flex transition-transform duration-1000 ease-in-out"
+        style={{
+          transform: `translateX(-${currentImageIndex2 * 100}%)`,
+        }}
+      >
+        {imageContainer2.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`Slide ${index + 1}`}
+            className="h-[500px] min-w-full object-cover"
+          />
+        ))}
+      </div>
+    </div>
+  </div>
 
-          <h2 className="text-4xl font-bold">
-            Shopping Made Easy
-          </h2>
+  {/* Content */}
+  <div className="w-full lg:w-1/2">
 
-          <p className="mt-6 text-lg leading-8 text-slate-600">
-            We believe online shopping should be simple, fast, and enjoyable.
-            ShopX combines a beautiful shopping experience with secure
-            authentication, personalized carts, advanced search, sorting,
-            pagination, and an admin dashboard.
-          </p>
+    <h2 className="text-4xl font-bold text-slate-900">
+      Shopping Made Easy
+    </h2>
 
-          <Link
-            to="/shop"
-            className="shop-now mt-8 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-7 py-4 font-semibold text-white transition hover:bg-slate-700"
+    <p className="mt-6 text-lg leading-8 text-slate-600">
+      We believe online shopping should be simple, fast, and enjoyable.
+      ShopX combines a beautiful shopping experience with secure
+      authentication, personalized carts, advanced search, sorting,
+      pagination, and an admin dashboard.
+    </p>
+
+    <Link
+      to="/shop"
+      className="shop-now mt-8 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-7 py-4 font-semibold text-white transition hover:bg-slate-700"
+    >
+      Browse Products
+      <FaArrowRight />
+    </Link>
+
+  </div>
+
+</section>
+
+<section className="bg-white py-24">
+  <div className="mx-auto max-w-5xl px-6">
+
+    <h2 className="mb-3 text-center text-4xl font-bold">
+      What Our Customers Say
+    </h2>
+
+    <p className="mb-12 text-center text-slate-500">
+      Trusted by thousands of happy customers worldwide.
+    </p>
+
+    <div className="mx-auto max-w-3xl rounded-3xl bg-[#F8F5F0] p-10 text-center shadow-xl transition-all duration-700">
+
+      {/* Stars */}
+      <div className="mb-6 flex justify-center gap-1">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <span
+            key={index}
+            className={`text-3xl ${
+              index < reviews[currentReview].rating
+                ? "text-yellow-400"
+                : "text-slate-300"
+            }`}
           >
-            Browse Products
-            <FaArrowRight />
-          </Link>
+            ★
+          </span>
+        ))}
+      </div>
 
+      {/* Review */}
+      <p className="text-xl italic leading-9 text-slate-700">
+        "{reviews[currentReview].review}"
+      </p>
+
+      {/* Avatar */}
+      <div className="mt-10 flex justify-center">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#72470a] text-xl font-bold text-white">
+          {reviews[currentReview].name[0]}
         </div>
+      </div>
 
-      </section>
+      {/* Name */}
+      <h3 className="mt-5 text-2xl font-bold">
+        {reviews[currentReview].name}
+      </h3>
+
+      <p className="text-slate-500">
+        Verified Customer
+      </p>
+
+      {/* Dots */}
+      <div className="mt-8 flex justify-center gap-2">
+        {reviews.map((_, index) => (
+          <button
+          aria-label={`Go to review ${index + 1}`}
+            key={index}
+            onClick={() => setCurrentReview(index)}
+            className={`h-3 w-3 rounded-full transition ${
+              currentReview === index
+                ? "bg-[#72470a]"
+                : "bg-slate-300"
+            }`}
+          />
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* CTA */}
 
       <section className="bg-[#D4C4AD] py-24 text-center text-white">
-
+        
         <h2 className="text-5xl font-bold">
           Ready to Start Shopping?
         </h2>
